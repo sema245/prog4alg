@@ -1,4 +1,22 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        flag = True
-        for i in range(0, len(s)):
+        left = 0
+        right = len(s) - 1
+
+        while left < right:
+            # Пропускаем не буквенно-цифровые символы слева
+            while left < right and not s[left].isalnum():
+                left += 1
+
+            # Пропускаем не буквенно-цифровые символы справа
+            while left < right and not s[right].isalnum():
+                right -= 1
+
+            # Сравниваем символы в нижнем регистре
+            if s[left].lower() != s[right].lower():
+                return False
+
+            left += 1
+            right -= 1
+
+        return True
